@@ -36,14 +36,14 @@ public class MedicoController {
 		medicoRepository.save(new Medico(dados));
 	}
 	
-	@GetMapping // devolver uma informação
+	@GetMapping 
 	public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, page = 0, sort = {"nome"}) Pageable paginacao) {
 		
 		return medicoRepository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
 	}
 	
 	@PutMapping
-	@Transactional // vai fazer uma atualização no db
+	@Transactional 
 	public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
 		var medico = medicoRepository.getReferenceById(dados.id());
 		medico.atualizarInformacoes(dados);		
