@@ -3,15 +3,9 @@ Clínica médica fictícia
 
 # Sobre o Projeto e Tecnologias Utilizadas
 
-Criei um API REST utilizando Spring Boot e também desenvolvi um CRUD.
+Desenvolvi uma API REST do zero utilizando Spring Boot, e criei um CRUD (Create, Read, Update, Delete) completo. Utilizei o Spring Initializr para a construção do projeto e aproveitei bibliotecas, como o driver do MySQL, o Flyway e o Lombok, para simplificar o processo de desenvolvimento.
 
-Usei o Spring Initializr para fazer a construção do projeto.
+Para manter um controle de histórico de evolução do banco de dados, utilizei migrations e implementei a API Rest a partir da criação dos controllers. Também utilizei repositories e JPA para simplificar o acesso ao banco de dados e o mapeamento das entidades.
 
-Utilizei bibliotecas, como o driver do MySQL, o Flyway e o Lombok.
-
-Fiz algumas migrations para ter controle do histórico de evolução do banco de dados e a implementar a API Rest a partir da criação dos controllers. 
-
-utilizei repositories, para simplificar o acesso ao banco de dados e ao JPA.
-
-Fiz o mapeamento das entidades JPA. Implementamos, também, o CRUD com validações.
+Além disso, implementei validações no CRUD, garantindo que os dados inseridos no banco de dados são consistentes e seguros.
 
