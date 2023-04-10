@@ -1,6 +1,6 @@
 // Classe responsável por isolar o tratamentos de erros da API
 
-package com.med.voll.api.infra;
+package com.med.voll.api.infra.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
