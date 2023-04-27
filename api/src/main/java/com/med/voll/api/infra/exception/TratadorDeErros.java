@@ -8,6 +8,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.med.voll.api.domain.ValidacaoException;
+
 import jakarta.persistence.EntityNotFoundException;
 
 @RestControllerAdvice // tipo de classe é para tratar error
@@ -26,6 +28,14 @@ public class TratadorDeErros {
 		// lista com cada um dos erros
 		var erros = ex.getFieldErrors();
 		return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
+	}
+	
+	@ExceptionHandler(ValidacaoException.class)
+	// recebendo o erro como parametro
+	public ResponseEntity tratarErroRegraDeNegócio(ValidacaoException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());
+		
+		//Se houve um erro nas regras de negócio, retorna um erro 400
 	}
 	
 	// criando um record iterno

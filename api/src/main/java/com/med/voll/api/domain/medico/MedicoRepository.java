@@ -30,4 +30,17 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
 			limit 1
 			""") // montando uma consultas, para buscar um médico aleatório, que estão ativo e que são das especialidade trazido pelo parametro
 	Medico escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime data);
+	
+	
+	// pegando apenas o médico ativo
+	@Query("""
+			select m.ativo
+			from Medico m
+			where
+			m.id = :id
+			""")
+	Boolean findAtivoById( Long id);
+	
+	
 	}
+
