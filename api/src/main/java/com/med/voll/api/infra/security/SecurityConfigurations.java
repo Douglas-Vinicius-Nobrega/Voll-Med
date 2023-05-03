@@ -34,6 +34,7 @@ public class SecurityConfigurations {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // configuramos a confi para ser STATELES
 				.and().authorizeHttpRequests()
 				.requestMatchers(HttpMethod.POST, "/login").permitAll() // pode disparar requisição, se estar logado 
+				.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll() // documentação 
 				.anyRequest().authenticated() // qualuqer outra requisição sem ser /login, precisa estar autenticado
 				.and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // chamando nosso filtro
 				.build(); // habilitando o stateless
