@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 // classe de segurança
 
-@Component // classe/componente genérico
+@Component
 public class SecurityFilter extends OncePerRequestFilter {
 	
 	@Autowired
@@ -33,7 +33,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 		
 		var tokenJWT = recuperarToken(request); // recuperamos o token do cabeçalho
 		
-		if(tokenJWT != null) { // se tiver cabeçalho faz a verificação
+		if(tokenJWT != null) { 
 			var subject = tokenService.getSubject(tokenJWT); // validar o token
 			
 			var usuario = repository.findByLogin(subject); 

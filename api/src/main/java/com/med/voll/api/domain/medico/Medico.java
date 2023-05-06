@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id") // Equal e hashcode encima do ID
+@EqualsAndHashCode(of = "id") 
 public class Medico {
 
 	@Id
@@ -31,13 +31,13 @@ public class Medico {
 	private Long id;
 	private String nome;
 	private String email;
-	private String telefone;
+	private String telefone;			
 	private String crm;
 	
 	@Enumerated(EnumType.STRING)
 	private Especialidade especialidade;
 	
-	@Embedded // faze parte do mesmo campo da tabela de médicos, no DB
+	@Embedded 
 	private Endereco endereco;
 	
 	private Boolean ativo;

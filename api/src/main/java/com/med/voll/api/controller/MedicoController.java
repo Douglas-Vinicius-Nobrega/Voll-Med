@@ -41,12 +41,12 @@ public class MedicoController {
 		var medico = new Medico(dados); 
 		medicoRepository.save(medico);
 		
-		// uri = endereço do nossa API
+
 		var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
 		
 		return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
 		
-		// retorno 201: Requisição processada e novo recurso criado = created
+		
 	}
 	
 	@GetMapping 
@@ -65,15 +65,15 @@ public class MedicoController {
 		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 	
-	// exclusão lógico
+	
 	@DeleteMapping("/{id}")
 	@Transactional 
 	public ResponseEntity excluir(@PathVariable Long id) {
 		var medico = medicoRepository.getReferenceById(id);
 		medico.excluir();
 		
-		return ResponseEntity.noContent().build(); // biuld vai construir um objeto noContent
-		// retorna um 204: Requisição processada e sem conteúdo
+		return ResponseEntity.noContent().build(); 
+		
 	}
 	
 	@GetMapping("/{id}")

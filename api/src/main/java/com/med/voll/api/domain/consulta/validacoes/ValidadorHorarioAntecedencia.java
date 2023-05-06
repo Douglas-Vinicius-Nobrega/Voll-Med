@@ -9,13 +9,13 @@ import java.time.Duration;
 import com.med.voll.api.domain.ValidacaoException;
 import com.med.voll.api.domain.consulta.DadosAgendamentoConsulta;
 
-@Component // componente genérico, o spring vai carrega na hora da iniciação do projeto
+@Component 
 public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoDeConsulta {
 	
 	public void validar(DadosAgendamentoConsulta dados) {
 		var dataConsulta = dados.data();
 		
-		var agora = LocalDateTime.now(); // pegando o horário de agora
+		var agora = LocalDateTime.now(); 
 		
 		var diferenteEmMinutos = Duration.between(agora, dataConsulta).toMinutes(); // duração em minutos
 		

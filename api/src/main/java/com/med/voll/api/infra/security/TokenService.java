@@ -13,22 +13,20 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.med.voll.api.domain.usuario.Usuario;
 
-// classe de velidação e geração dos tokens
-
 @Service // classe dee serviço
 public class TokenService {
 	
-	@Value("${api.security.token.secret}") // variável de ambiente do properties
+	@Value("${api.security.token.secret}") 
 	private String secret; 
 
 	public String gerarToken(Usuario usuario) {
 		
-		// criando um token jwt
+		
 		try {
 		    var algoritmo = Algorithm.HMAC256(secret);
 		    return JWT.create()
-		        .withIssuer("API Voll.med") // ferramenta responsável pela geração do token
-		        .withSubject(usuario.getLogin()) // Identificando o usuário a qual esse token pertence
+		        .withIssuer("API Voll.med") 
+		        .withSubject(usuario.getLogin())
 		        .withExpiresAt(dataExpiracao())
 		        .sign(algoritmo);
 		} catch (JWTCreationException exception){

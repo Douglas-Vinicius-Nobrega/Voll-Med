@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Pattern;
 
 public record DadosCadastroMedico(
 		
-		@NotBlank(message = "{nome.obrigatorio}") // verifica se está nulo ou vázio
+		@NotBlank(message = "{nome.obrigatorio}")
 		String nome, 
 		
 		@NotBlank(message = "{email.obrigatorio}")

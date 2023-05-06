@@ -28,15 +28,15 @@ public class SecurityConfigurations {
 	@Autowired
 	private SecurityFilter securityFilter;
 
-	@Bean // que serve exibir o retorno desse método, que estamos devolvendo um objeto
+	@Bean 
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf().disable() // desabilitando o csrf
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // configuramos a confi para ser STATELES
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) 
 				.and().authorizeHttpRequests()
-				.requestMatchers(HttpMethod.POST, "/login").permitAll() // pode disparar requisição, se estar logado 
-				.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll() // documentação 
-				.anyRequest().authenticated() // qualuqer outra requisição sem ser /login, precisa estar autenticado
-				.and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) // chamando nosso filtro
+				.requestMatchers(HttpMethod.POST, "/login").permitAll() 
+				.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll() 
+				.anyRequest().authenticated() 
+				.and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) 
 				.build(); // habilitando o stateless
 	}
 	

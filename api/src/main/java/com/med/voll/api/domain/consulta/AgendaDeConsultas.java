@@ -13,7 +13,7 @@ import com.med.voll.api.domain.medico.Medico;
 import com.med.voll.api.domain.medico.MedicoRepository;
 import com.med.voll.api.domain.paciente.PacienteRepository;
 
-@Service // Executa regras de negócio e validações da aplicação
+@Service 
 public class AgendaDeConsultas {
 	
 	@Autowired
@@ -29,37 +29,32 @@ public class AgendaDeConsultas {
 	private List<ValidadorAgendamentoDeConsulta> validadores;
 	
 	public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dados) {
-		// aqui vamos colocar as validações
 		
-		if(!pacinteRepository.existsById(dados.idPaciente())) { // se n existir o id no banco de dados
+		
+		if(!pacinteRepository.existsById(dados.idPaciente())) { 
 			throw new ValidacaoException("Id do paciente informado não existe!");
 		}
 		
-		if(dados.idMedico() != null && !medicoRepository.existsById(dados.idMedico())) { // se o id do médico for diferente de nulo e se não existir
+		if(dados.idMedico() != null && !medicoRepository.existsById(dados.idMedico())) { 
 			throw new ValidacaoException("Id do médico informado não existe!");
 		}
 		
-		// padrão de projeto chamado Designer Patters > Strategy 
-		validadores.forEach(v -> v.validar(dados)); // vai percorrer todos os validadores e fazer as verificações
-		// SOLID - estamos utilizando 3 principios SOLID
-		// s - Single Responsability principle - cada classe tem uma única responsabilidade
-		// o - Open-Cliosed-Principle - Consigo criar novos validadores sem mexer aqui
-		// d - Dependency Inversion Principle - Minha classe não depende dos validadores
+		validadores.forEach(v -> v.validar(dados)); 
 		
-		var paciente = pacinteRepository.getReferenceById(dados.idPaciente()); // buscando id
+		var paciente = pacinteRepository.getReferenceById(dados.idPaciente());
 		var medico = escolherMedicoAleatorio(dados);
 		if(medico == null) {
 			throw new ValidacaoException("Não existe médico disponível nessa data");
 		}
 		
-		var consulta = new Consulta(null, medico, paciente, dados.data()); // objeto do tipo consulta
+		var consulta = new Consulta(null, medico, paciente, dados.data()); 
 		consultaRepositoy.save(consulta);
 		
-		return new DadosDetalhamentoConsulta(consulta); // retornando esse constructor de DTO
+		return new DadosDetalhamentoConsulta(consulta); 
 	}
 
 	private Medico escolherMedicoAleatorio(DadosAgendamentoConsulta dados) {
-		if(dados.idMedico() != null) { // diferente de nulo
+		if(dados.idMedico() != null) { 
 			return medicoRepository.getReferenceById(dados.idMedico());
 		}
 		if(dados.especialidade() == null) {

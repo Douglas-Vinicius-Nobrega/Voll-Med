@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id") // Equal e hashcode encima do ID
+@EqualsAndHashCode(of = "id")
 public class Paciente {
 
 	@Id
